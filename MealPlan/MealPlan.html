@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../MainPage/MainPage.css">
+    <link rel="stylesheet" href="MealPlan.css">
+    <title>Meal Plan</title>
+</head>
+
+<body>
+     <!--  NAVIGATION BAR -->
+     <div class="navigation" id="responsive-navigation" >
+        <a href="../MainPage/MainPage.html">
+        <img src="../Logo/logo_transparent.png" class="logo" alt="logo"></a>
+        <a href="../MainPage/MainPage.html">About</a>
+        <a href="../FindFriend/FindFriend.html">Find friends</a>
+        <button class="dropdown">Profile 
+          <i class="arrow down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a href="../MealPlan/MealPlan.html">Meal plan</a>
+          <a href="../Multimedia/Multimedia.html">Multimedia</a>
+          <a href="../MedicalHistory/MedicalHistory.html">Medical history</a>
+        </div>
+        <a href="../Login/Login.html">Sign out</a>
+    </div>
+    <div class="main" id="sideNav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <img src="../Background/3lines.jpg" class="img-icon" alt="">
+        </a>
+        <div class="weekly-plan">
+            <h1 class="title">WEEKLY MEAL PLAN</h1>
+            <h2 style="font-size: 2vw;text-align:center;color:rgb(126, 84, 5);">Specially created for Grivei</h2>
+            <button class="button-edit">EDIT</button>
+            <div class="days">
+                <div class="days-box">
+                    <p style="text-align: center;">Monday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Pork Heat</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Chicken necks </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Tuesday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Meaty Pork Neck Bone</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Pig Tails </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Wednesday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Beef Heart</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Pork Heat</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Duck Necks </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Thursday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Atlantic Mackerel</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Boneless Beef</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Pig Tails </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Friday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Pork Heat</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner:  Atlantic Mackerel </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Saturday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Pork Heat</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Pork Heat </label>
+                </div>
+                <div class="days-box">
+                    <p style="text-align: center;">Sunday</p>
+                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+                    <label for="breakfast"> Breakfast:  Atlantic Mackerel</label><br>
+                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
+                    <label for="lunch"> Lunch: Chicken necks</label><br>
+                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
+                    <label for="dinner"> Dinner: Chicken necks </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../JS/dropdown.js"></script>
+</html>

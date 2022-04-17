@@ -1,0 +1,101 @@
+.banner {
+    padding: 30px 100px;
+    background-color: rgb(129, 152, 52);
+    text-align: center;
+    color: white;
+    border: 3px solid rgb(110, 130, 44);
+    margin-bottom: 50px;
+}
+
+.margin {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.little-banner {
+    background-color: rgb(129, 152, 52);
+    text-align: center;
+    color: white;
+    padding: 15px;
+    border-bottom: 10px solid rgb(110, 130, 44);
+
+
+}
+
+#profile-image {
+    margin: 30px;
+    height: 15em;
+    width: 15em;
+    border: 10px solid rgb(88, 105, 34);
+    border-radius: 5%;
+}
+
+.white-box {
+    background-color: rgb(195, 194, 194);
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 10px;   
+}
+
+.description-text-box {
+    display: block;
+    font-weight: 700;
+    background-color: rgb(158, 156, 156);
+    margin: 30px;
+    padding-left: 20px;
+    padding-right: 30px;
+    object-fit: contain;
+
+    border-radius: 5%;
+}
+
+.green-color {
+    color: rgb(37, 77, 37);
+    font-weight: 700;
+}
+
+.block-box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    font-weight: 700;
+    margin-left: none;
+    line-height: 80%;
+}
+
+.table-class {
+    border-collapse: collapse;
+    background-color: rgb(195, 194, 194);
+    width: 100%;
+    border-spacing: 0;
+}
+
+.table-class td {
+    border-style: solid;
+    border-width: 2px;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.table-class th {
+    border-style: solid;
+    border-width: 4px;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.table-class .table-son-class {
+    border-color: rgb(78, 78, 78);
+    text-align: center;
+    vertical-align: top
+}
+
+.first-aid{
+    font-weight: 300;
+}

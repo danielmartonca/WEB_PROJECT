@@ -1,0 +1,28 @@
+.asezare{
+  display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left:auto;
+    margin-top: 50px;
+}
+.button-little {
+  background-color: rgb(51, 107, 139);
+  justify-content: center;
+  border: none;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.button-little:hover{
+  background-color:blue;
+}
