@@ -1,4 +1,4 @@
-const sql = require("mssql");
+    const sql = require("mssql");
 const config = {
     user: 'sa', password: 'LCy!@e^jr#G{<9<B', server: 'localhost', database: 'PetManager', trustServerCertificate: true
 };

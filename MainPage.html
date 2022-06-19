@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pet Smart Manager</title>
@@ -26,23 +26,29 @@
 
 <!--MAIN PAGE-->
 <div class="main" id="sideNav">
+
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <img src="website/assets/3lines.jpg" class="img-icon" alt="">
     </a>
     <div class="about-section">
-        <h1 style="margin-top: -30px;text-align: center;">Grivei</h1>
+        <div class="block">
+            <button id="button-edit" class = "editableButtons" @TODO onclick="sendInformationToBackend()">SAVE</button>
+            <h1 class="title">Grivei</h1>
+        </div>
         <div class="description">
-            <img src="website/assets/dog.jpg" class="center-image box-shadow">
+            <form class="description" @TODO onclick="">
+            <img src="website/assets/dog.jpg" class="center-image box-shadow" alt="dog">
             <div class="description-box">
-                <h4>Size: medium</h4>
-                <h4>Health status: every vaccine done!</h4>
-                <h4>Preffered food: chicken</h4>
+                <h4>Size: <label><input type="text" id="size" placeholder="press to edit"></label></h4>
+                <h4>Health status:<label><input type="text" id="health" placeholder="press to edit"></label></h4>
+                <h4>Preffered food:<label> <input type="text" id="food" placeholder="press to edit"></label></h4>
             </div>
             <div class="description-box">
-                <h4>Age: 11 months</h4>
-                <h4>Date of birth: 10-MARCH-2021</h4>
-                <h4>Breed: Bichon</h4>
+                <h4>Age: <label><input type="number" id="age" placeholder="press to edit"></label>months</h4>
+                <h4>Date of birth: <label><input type="month" id="birth" placeholder="press to edit"></label></h4>
+                <h4>Breed: <label><input type="text" id="breed" placeholder="press to edit"></label></h4>
             </div>
+            </form>
         </div>
     </div>
 
@@ -92,5 +98,6 @@
     </div>
 </div>
 <script type="text/javascript" src="website/scripts/dropdown.js"></script>
+<!--<script type="text/javascript" src="website/scripts/editable.js"></script>-->
 </body>
 </html> 
