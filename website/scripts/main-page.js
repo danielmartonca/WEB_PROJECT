@@ -1,4 +1,4 @@
-window.onload = async function () {
+async function getPetDetails() {
     try {
         const token = window.localStorage.getItem("JWT");
         if (token === null) {
@@ -23,7 +23,6 @@ window.onload = async function () {
             alert("An unexpected error has occurred.");
             return;
         }
-
         document.getElementById('petName').textContent = responseBody.Name;
         document.getElementById('size').placeholder = responseBody.Size;
         document.getElementById('health').placeholder = responseBody.HealthStatus;
@@ -37,3 +36,55 @@ window.onload = async function () {
     }
 
 }
+
+async function updatePetDetails() {
+    const token = window.localStorage.getItem("JWT");
+    if (token === null) {
+        console.error("No token extracted from local storage.");
+        alert("You are not logged in to view this page.")
+        setTimeout(() => {
+            window.location.href = "/login.html"
+        }, 5000);
+        return;
+    }
+
+    const sizeElement = document.getElementById('size');
+    const healthStatusElement = document.getElementById('health');
+    const prefferedFoodElement = document.getElementById('food');
+    const ageElement = document.getElementById('age');
+    const breedElement = document.getElementById('breed');
+    const dateOfBirthElement = document.getElementById('birth');
+
+    const json = {
+        'Size': sizeElement.value.length !== 0 ? sizeElement.value : sizeElement.placeholder,
+        'HealthStatus': healthStatusElement.value.length !== 0 ? healthStatusElement.value : healthStatusElement.placeholder,
+        'PrefferedFood': prefferedFoodElement.value.length !== 0 ? prefferedFoodElement.value : prefferedFoodElement.placeholder,
+        'Age': ageElement.value.length !== 0 ? ageElement.value : ageElement.placeholder,
+        'Breed': breedElement.value.length !== 0 ? breedElement.value : breedElement.placeholder,
+        'DateOfBirth': dateOfBirthElement.value.length !== 0 ? dateOfBirthElement.value : dateOfBirthElement.placeholder,
+    }
+
+    //TODO maybe regex?
+
+    console.log(`Will send registration request with body:\n${JSON.stringify(json)}`);
+    let response = await fetch("/updatePetDetails", {
+        method: 'POST', headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify(json)
+    })
+
+    let responseBody = await response.text();
+    console.log(`Response: ${response.status} with body:${JSON.parse(responseBody)}`);
+
+    //if any error has occurred
+    if (response.status !== 200) {// it's not OK
+        alert(responseBody);
+        return;
+    }
+    console.log("Successfully updated pet details");
+    alert("Pet details have been updated.")
+    window.location.reload();
+}
+
+window.onload = getPetDetails;
