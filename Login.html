@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pet Smart Manager</title>
-  <link rel="stylesheet" href="website/styles/LoginStyle.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Smart Manager</title>
+    <link rel="stylesheet" href="website/styles/LoginStyle.css">
 
-  <title>Pet Smart Manager</title>
+    <!--SCRIPTS-->
+    <script src="website/scripts/authentication.js"></script>
+    <script src="website/scripts/cookies.js"></script>
 </head>
 <body>
-  <form method="post" action="index.html">
-  <div class="entirePage">
-    <div class="login">
-       <div class="image"> 
-       </div>
-        <div class="box">
-        <h1>Login</h1>
-        <input type="email" placeholder="E-mail" name="email" class="email" />
-        <input type="password" placeholder="password" name="password" class="password" />
-        <a href="MainPage.html"><div class="btn">Sign In</div></a>
-        <a href="SignUp.html"><div id="btn2">Sign Up</div></a>
-        <p>Forgot your password? <a href="#" class="ClickHereClass">Click Here!</a></p>
-     </div>
+<form onsubmit="attemptLogin();return false;">
+    <div class="entirePage">
+        <div class="login">
+            <div class="image">
+            </div>
+            <div class="box">
+                <h1>Login</h1>
+                <label>
+                    <input type="email" id="email" placeholder="E-mail" name="email" class="email"/>
+                </label>
+                <label>
+                    <input type="password" id="parola" placeholder="password" name="password" class="password"/>
+                </label>
+                <a onclick="attemptLogin();">
+                    <div class="btn">Sign In</div>
+                </a>
+                <a href="SignUp.html">
+                    <div id="btn2">Sign Up</div>
+                </a>
+                <p>Forgot your password? <a href="#" class="ClickHereClass">Click Here!</a></p>
+            </div>
+        </div>
     </div>
-  </div>
-    </form>
+</form>
 </body>
 </html>

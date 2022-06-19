@@ -26,5 +26,11 @@ async function registerAccount(jsonAccount) {
     return result !== null;
 }
 
+async function accountExistsByCredentials(email, password) {
+    const result = await executeQuery(`SELECT * FROM Accounts WHERE EmailAddress='${email}' AND Password='${password}'`);
+    return result.recordset.length !== 0;
+}
+
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
+module.exports.accountExistsByCredentials = accountExistsByCredentials;
