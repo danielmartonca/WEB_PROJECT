@@ -1,10 +1,9 @@
-const handleBaseUrl = require('../services/base-service').handleBaseUrl;
+const baseService = require('../services/base-service')
 
-function getController(request, response) {
+function getController(request, response, body) {
     switch (request.url) {
-        //TODO other endpoints
         default:
-            handleBaseUrl(request, response);
+            baseService.handleFiles(request, response);
             break;
     }
 }

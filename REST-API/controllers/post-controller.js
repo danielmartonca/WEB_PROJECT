@@ -1,14 +1,13 @@
-const handleBaseUrl = require('../services/base-service').handleBaseUrl;
+const baseService = require('../services/base-service')
 const registerService = require('../services/authentication-service');
 
-function postController(request, response) {
+function postController(request, response, body) {
     switch (request.url) {
         case "/authentication/register":
-            console.log(`${request.method} ${request.url} `);
             registerService.register(request, response);
             break;
         default:
-            handleBaseUrl(request, response);
+            baseService.handle404(request, response);
             break;
     }
 }
