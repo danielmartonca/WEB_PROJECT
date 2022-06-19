@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Smart Manager</title>
+
     <link rel="stylesheet" href="website/styles/MainPage.css">
     <link rel="stylesheet" href="website/styles/SignUp.css">
+
     <!--SCRIPTS-->
     <script src="website/scripts/authentication.js"></script>
-    <title>Pet Smart Manager</title>
 </head>
 <body>
 <h1 style="margin-top: 50px;text-align: center;background-color: grey;color:blue">Sign Up</h1>
@@ -34,6 +36,11 @@
 
         <input type="submit" value="Submit" onsubmit="attemptRegister();return false;">
     </form>
+    <script>
+        window.onload = function () {
+            window.localStorage.removeItem("JWT");
+        };
+    </script>
 </div>
 
 </body>

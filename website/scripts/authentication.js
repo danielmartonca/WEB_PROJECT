@@ -101,3 +101,8 @@ async function attemptLogin() {
     console.log("Login successful.")
     window.location.href = "/MainPage.html";
 }
+
+function signOut() {
+    window.localStorage.removeItem("JWT")
+    window.location.href = "/Login.html"
+}

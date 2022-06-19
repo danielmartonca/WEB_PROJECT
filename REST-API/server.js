@@ -7,8 +7,7 @@ const jwtService = require('./services/jwt-service');
 
 const PORT = 8083;
 
-const authorisationRequiredApis = new Set(["/MainPage.html", "/About.html", //TODO add others
-]);
+const authorisationRequiredApis = new Set(["/testauth"]);
 
 http.createServer(function (request, response) {
     //while data is still being received -> do nothing
