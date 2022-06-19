@@ -1,5 +1,5 @@
-function buildResponse(response, httpStatus, headers = undefined, body = "") {
-    if (headers === undefined) headers = {};
+function buildResponse(response, httpStatus, headers = null, body = "") {
+    if (headers === null) headers = {'ContentType': 'application/json'};
 
     if (body !== "") {
         if (typeof body == "string") {

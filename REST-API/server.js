@@ -18,13 +18,13 @@ http.createServer(function (request, response) {
             try {
                 json = JSON.parse(data);
             } catch (e) {
-                console.error(`Couldn't convert request body to json.Request body is:\n${data}`)
+                console.error(`Couldn't convert request body to json.Request body is:${'\n' + JSON.stringify(data)}`)
                 httpUtils.buildResponse(response, StatusCode.ClientErrorBadRequest, {'ContentType': 'text/plain'}, `Invalid request body. Expected json but received:\n'${data}'`)
                 return;
             }
         }
 
-        if (request.method !== "GET") console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + json}`);
+        if (request.method !== "GET") console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(json)}\n`);
 
         switch (request.method) {
             case "GET":

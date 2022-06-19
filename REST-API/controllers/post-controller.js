@@ -4,7 +4,7 @@ const registerService = require('../services/authentication-service');
 function postController(request, response, body) {
     switch (request.url) {
         case "/authentication/register":
-            registerService.register(request, response);
+            registerService.register(request, response,body);
             break;
         default:
             baseService.handle404(request, response);
