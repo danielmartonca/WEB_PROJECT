@@ -30,19 +30,22 @@ async function attemptRegister() {
         return;
     }
 
-
-    console.log(`Will send registration request with body:\n${json}`);
+    console.log(`Will send registration request with body:\n${JSON.stringify(json)}`);
     let response = await fetch('/authentication/register', {
         method: 'POST', headers: {
             'Accept': 'application/json', 'Content-Type': 'application/json'
         }, body: JSON.stringify(json)
     })
-    if (response.status === 200) {
-        let responseBody = await response.text();
-        console.log(responseBody);
 
+    let responseBody = await response.text();
+    console.log(`Response: ${response.status} with body:${responseBody}`);
+
+    //if any error has occurred
+    if (response.status !== 201) {//CREATED
+        alert(responseBody);
+        return;
     }
-    else console.error("eroare");
 
-
+    console.log("Registration successful.")
+    window.location.href = "/Login.html";
 }
