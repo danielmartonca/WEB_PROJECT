@@ -1,13 +1,13 @@
 const baseService = require('../services/base-service')
 const authenticationService = require('../services/authentication-service');
 
-function postController(request, response, body) {
+async function postController(request, response, body, jwt = "") {
     switch (request.url) {
         case "/authentication/register":
-            authenticationService.register(request, response, body);
+            await authenticationService.register(request, response, body);
             break;
         case "/authentication/login":
-            authenticationService.login(request, response, body);
+            await authenticationService.login(request, response, body);
             break;
         default:
             baseService.handle404(request, response);

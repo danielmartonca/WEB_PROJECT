@@ -18,12 +18,23 @@ function generateJwt(account) {
 
 async function verifyJwt(token) {
     try {
-        const decoded = await jwt.verify(token, privateKey);
+        await jwt.verify(token, privateKey);
         return true;
     } catch (err) {
         return false;
     }
 }
 
+async function extractAccount(token) {
+    try {
+        let decoded = await jwt.verify(token, privateKey);
+        return decoded.data;
+    } catch (err) {
+        console.error(`Exception while extracting account from token: \n${err}`);
+        return null;
+    }
+}
+
 module.exports.generateJwt = generateJwt;
 module.exports.verifyJwt = verifyJwt;
+module.exports.extractAccount = extractAccount;

@@ -7,7 +7,7 @@ const jwtService = require('./services/jwt-service');
 
 const PORT = 8083;
 
-const authorisationRequiredApis = new Set(["/testauth"]);
+const authorisationRequiredApis = new Set(["/getPetDetails",]);
 
 http.createServer(function (request, response) {
     //while data is still being received -> do nothing
@@ -33,6 +33,7 @@ http.createServer(function (request, response) {
         //log all requests that are not GET
         if (request.method !== "GET") console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(json)}\n`);
 
+        let token = '';
         //if the current api call requires authorisation look for 'Authorisation: Bearer tokenValue' header and check if tokenValue is a valid JWT token then verify it
         if (authorisationRequiredApis.has(request.url)) {
             if (request.headers.authorization === undefined) {
@@ -47,7 +48,7 @@ http.createServer(function (request, response) {
                 return;
             }
 
-            let token = request.headers.authorization.split(' ')[1];
+            token = request.headers.authorization.split(' ')[1];
             let isValid = await jwtService.verifyJwt(token);
             if (!isValid) {
                 console.log("User tried to access unauthorised resource with invalid JWT token.")
@@ -60,10 +61,10 @@ http.createServer(function (request, response) {
 
         switch (request.method) {
             case "GET":
-                getController(request, response, json)
+                await getController(request, response, token)
                 break;
             case "POST":
-                postController(request, response, json)
+                await postController(request, response, json, token)
                 break;
             default:
                 console.error("HTTP METHOD NOT SUPPORTED");

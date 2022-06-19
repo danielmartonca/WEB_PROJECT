@@ -47,6 +47,13 @@ async function register(request, response, body) {
         return;
     }
 
+    let hasCreatedPetDetails = await databaseService.createPetDetails(body);
+    if (!hasCreatedPetDetails) { //if it failed for some reason
+        console.error("Failed to add empty pet details to account.\n")
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal);
+        return;
+    }
+
     //if everything was ok
     console.log("Registered new account.\n")
     httpUtils.buildResponse(response, StatusCode.SuccessCreated, null, "Successfully created new account.");

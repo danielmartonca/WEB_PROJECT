@@ -1,4 +1,4 @@
-    const sql = require("mssql");
+const sql = require("mssql");
 const config = {
     user: 'sa', password: 'LCy!@e^jr#G{<9<B', server: 'localhost', database: 'PetManager', trustServerCertificate: true
 };
@@ -26,11 +26,26 @@ async function registerAccount(jsonAccount) {
     return result !== null;
 }
 
+async function createPetDetails(jsonAccount) {
+    const result = await executeQuery(`
+    DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${jsonAccount.email}' and [Password]='${jsonAccount.password}');
+    INSERT INTO [Details] VALUES(null,null,null,null,null,@account_id,null)`);
+    return result !== null;
+}
+
 async function accountExistsByCredentials(email, password) {
     const result = await executeQuery(`SELECT * FROM Accounts WHERE EmailAddress='${email}' AND Password='${password}'`);
     return result.recordset.length !== 0;
 }
 
+async function getPetDetails(email, password) {
+    const result = await executeQuery(`SELECT * FROM Details WHERE AccountId=(SELECT ID FROM Accounts WHERE EmailAddress='${email}' AND Password='${password}')`);
+    if (result.recordset.length > 0) return result.recordset[0];
+    return null;
+}
+
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
+module.exports.createPetDetails = createPetDetails;
 module.exports.accountExistsByCredentials = accountExistsByCredentials;
+module.exports.getPetDetails = getPetDetails;
