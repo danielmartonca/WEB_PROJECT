@@ -26,6 +26,14 @@ async function registerAccount(jsonAccount) {
     return result !== null;
 }
 
+async function getAccountByEmailAndPassword(email, password) {
+    const result = await executeQuery(`SELECT * FROM Accounts WHERE EmailAddress='${email}' AND Password='${password}'`);
+    if (result.recordset.length !== 0)
+        return result.recordset[0];
+    return null;
+}
+
+
 async function createPetDetails(jsonAccount) {
     const result = await executeQuery(`DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${jsonAccount.email}' and [Password]='${jsonAccount.password}');
     INSERT INTO [Details] VALUES(null,null,null,null,null,@account_id,null)`);
@@ -52,6 +60,7 @@ async function updatePetDetails(email, password, petDetails) {
 
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
+module.exports.getAccountByEmailAndPassword = getAccountByEmailAndPassword;
 module.exports.createPetDetails = createPetDetails;
 module.exports.accountExistsByCredentials = accountExistsByCredentials;
 module.exports.getPetDetails = getPetDetails;

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="website/styles/MainPage.css">
     <!--SCRIPTS-->
     <script src="website/scripts/authentication.js"></script>
+    <script src="website/scripts/main-page.js"></script>
 </head>
 <body>
 
@@ -35,19 +36,19 @@
     <div class="about-section">
         <div class="block">
             <button id="button-edit" class="editableButtons" @TODO onclick="sendInformationToBackend()">SAVE</button>
-            <h1 id="petName" class="title">Grivei</h1>
+            <h1 id="petName" class="title"></h1>
         </div>
         <div class="description">
             <form class="description" @TODO onclick="">
                 <img src="website/assets/dog.jpg" class="center-image box-shadow" alt="dog">
                 <div class="description-box">
-                    <h4>Size: <label><input type="text" id="size" placeholder="press to edit"></label></h4>
+                    <h4>Size: <label><input  type="text" id="size" placeholder="press to edit"></label></h4>
                     <h4>Health status:<label><input type="text" id="health" placeholder="press to edit"></label></h4>
                     <h4>Preffered food:<label> <input type="text" id="food" placeholder="press to edit"></label></h4>
                 </div>
                 <div class="description-box">
                     <h4>Age: <label><input type="number" id="age" placeholder="press to edit"></label>months</h4>
-                    <h4>Date of birth: <label><input type="month" id="birth" placeholder="press to edit"></label></h4>
+                    <h4>Date of birth: <label><input type="text" id="birth" placeholder="press to edit"></label></h4>
                     <h4>Breed: <label><input type="text" id="breed" placeholder="press to edit"></label></h4>
                 </div>
             </form>

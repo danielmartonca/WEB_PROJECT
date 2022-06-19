@@ -22,6 +22,11 @@ async function getPetDetails(request, response, jwt) {
 
     //if everything was ok
     console.log(`Pet details extracted:\n${JSON.stringify(petDetails)}\n`)
+    const extractedAccount = await databaseService.getAccountByEmailAndPassword(account.email, account.password);
+    petDetails['Name'] = extractedAccount.Name;
+    petDetails['FamilyName'] = extractedAccount.FamilyName;
+    petDetails['Gender'] = extractedAccount.Gender;
+    console.log(`Pet details to be sent:\n${JSON.stringify(petDetails)}\n`)
     httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, petDetails);
 }
 
