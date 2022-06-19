@@ -13,7 +13,7 @@ body {
   font-family: Andale Mono, AndaleMono, monospace;
   margin: 0;
   padding: 0;
-  background-image: url("../Background/background.png");
+  background-image: url("../assets/background.png");
   background-size: cover;
   background-color: rgb(255, 255, 255);
 }

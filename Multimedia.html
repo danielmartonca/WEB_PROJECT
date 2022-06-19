@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="website/styles/MainPage.css">
+  <link rel="stylesheet" href="website/styles/Multimedia.css">
+  <title>Pet Smart Manager</title>
+</head>
+
+<body>
+  <!--  NAVIGATION BAR -->
+  <div class="navigation" id="responsive-navigation" >
+    <a href="MainPage.html">
+    <img src="website/assets/logo_transparent.png" class="logo" alt="logo"></a>
+    <a href="MainPage.html">About</a>
+    <a href="FindFriend.html">Find friends</a>
+    <button class="dropdown">Profile 
+      <i class="arrow down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="MealPlan.html">Meal plan</a>
+      <a href="./Multimedia.html">Multimedia</a>
+      <a href="MedicalHistory.html">Medical history</a>
+    </div>
+    <a href="Login.html">Sign out</a>
+</div>
+<div class="main" id="sideNav">
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <img src="website/assets/3lines.jpg" class="img-icon" alt="">
+  </a>
+  <div class="gallery">
+      <div class="polaroid">
+         <div id="dog">
+      <a href="Photos.html">
+        <img src="website/assets/Photo.jpg" alt="photo" width="500" height="400" >
+      </a>
+      <div  class="container">
+        <p><h1>Your Photos<h1></p>
+      </div>
+      </div>   
+   </div>
+
+    <div id="dog">
+      <a href="Videos.html">
+        <img src="website/assets/Video.jpg" alt="video" width="500px" height="400">
+      </a>
+      <div  class="container">
+        <p><h1>Your Videos<h1></p>
+      </div>
+    </div>
+
+    <div id="dog">
+      <a href="Records.html">
+        <img src="website/assets/microfon.jpg" alt="microphone" width="500" height="400">
+      </a>
+      <div  class="container">
+        <p><h1>Your Records<h1></p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="website/scripts/dropdown.js"></script>
+  </div>
+</body>
+</html>

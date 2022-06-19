@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Smart Manager</title>
+    <link rel="stylesheet" href="website/styles/MainPage.css">
+    <link rel="stylesheet" href="website/styles/About.css">
+</head>
+
+<body>
+<!--  NAVIGATION BAR -->
+<div class="navigation" id="responsive-navigation">
+    <a href="MainPage.html">
+        <img src="website/assets/logo_transparent.png" class="logo" alt="logo"></a>
+    <a href="MainPage.html">About</a>
+    <a href="FindFriend.html">Find friends</a>
+    <button class="dropdown">Profile
+        <i class="arrow down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="MealPlan.html">Meal plan</a>
+        <a href="Multimedia.html">Multimedia</a>
+        <a href="MedicalHistory.html">Medical history</a>
+    </div>
+    <a href="Login.html">Sign out</a>
+</div>
+<div class="main" id="sideNav">
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <img src="website/assets/3lines.jpg" class="img-icon" alt="">
+    </a>
+    <p style="text-align: center; font-size: 50px"><strong>DOCUMENTATION</strong></p>
+    <p><strong>1.1. Purpose</strong></p>
+    <p>The purpose of the Pet Smart Manager project is to make pets owners an easier life managing all the details about
+        them. You can save and edit memories of your pet, the medical history and more information about his health,
+        like his meal plan for the entire week, and how to give him first aid in case of emergency. Also you can see
+        other pets and details about them and also you can add them on your friend list to keep them close.</p>
+    <p><br></p>
+    <p><strong>2.2.Product Functions</strong></p>
+    <p>First of all, the users need to create an account and login in order to acces the application. Once you are
+        logged in the app, you can create and edit your profile of your pet. Besides the details like age,gender, breed,
+        name and others, you can use the other 3 categories:<em>&nbsp;&quot;Meal plan&quot;, &quot;Multimedia&quot; and
+            &quot;Medical history&quot;.&nbsp;</em>Another page you can use within the application is dedicated for
+        interaction and is named <em>&quot;Find friends&quot;</em>.</p>
+    <p><strong>2.3.User Classes and Characteristics</strong></p>
+    <p>The main class that we anticipate to use this product is the owners of any kind of pet, the ones that love their
+        animal and dedicate a lot of time for their health. Another class can be the veterinary doctors who will use
+        this application to keep all the animals and their medical history under their atention. &nbsp;</p>
+    <p><strong>2.4. Operating Environment</strong></p>
+    <p>A person who wants to use this application needs to have any device that has internet connection and can use a
+        web browser.</p>
+    <p><strong>2.5.Design and Implementation Constraints</strong></p>
+    <p>One of the limitations of the design of the applications is the fact that the app is english-only and can be hard
+        to use if you don&apos;t know the language too well. Other than that, another thing is that you can&apos;t chat
+        with other pets and also you can&apos;t see the multimedia of other pets.</p>
+    <p><strong>2.6.User Documentation</strong></p>
+    <p>The application is pretty suggestive and simple and we have the instruction on every button that you can press to
+        change the action of every page you want to proceed.Also the users who have any questions can contact us by
+        email.</p>
+    <p><strong>3.1. User Interfaces</strong></p>
+    <p>After you log in, the navigation bar is shown on the left of the screen on every page helping users to acces all
+        the features the application has. The nav-bar is responsive and if the users acces the app from a phone or
+        tablet, there will be an icon on the top-right of the screen to open nav-bar.&nbsp;</p>
+    <p>The navigation bar contains:</p>
+    <ol>
+        <li>About</li>
+        <li>Find Friends</li>
+        <li>Profile: Meal Plan, Multimedia, Medical History</li>
+        <li>Sign out</li>
+    </ol>
+    <p><strong>3.2. Hardware Interfaces</strong></p>
+    <p>The application is based on HTML, CSS and vanilla JAVASCRIPT and can be used on any browser</p>
+    <p><strong>3.3 Software Interfaces</strong></p>
+    <p>We developed this app on windows using visual studio code or any text editor and wrote HTML, CSS, JS code. We
+        store the data using XAMPP and MYSQL.</p>
+    <p><strong>3.4 Communications Interfaces</strong></p>
+    <p>The communications functions you need for this product is e-mail, network connection, a device that can use a web
+        browser, an web browser. The communication standard that is used is HTTP.</p>
+    <p><br></p>
+    <p><strong>4.1. &quot;Login&quot; feature</strong></p>
+    <p>This is a high priority feature as you need to login using your email and password to acces the application.</p>
+    <p><strong>4.2. &quot;Sign-up&quot; feature</strong></p>
+    <p>The users who don&apos;t have an account can create one using this feature. &quot;Sign-up&quot; is a high
+        priority feature.<strong>&nbsp;</strong></p>
+    <p><strong>4.3. &quot;About&quot; feature</strong></p>
+    <p>On the about feature you can see the documentation of the application and also details about the project
+        developers like name and e-mail. This one is low priority.</p>
+    <p><strong>4.4. Profile features</strong></p>
+    <p>Multimedia, Meal Plan and Medical History are medium features and are not used every time and they are not
+        necessary.</p>
+    <p><strong>5.3. Security Requirements</strong></p>
+    <p>The users create an account using his email, name and password. Other users can only see the details that are
+        public. The multimedia, meal plan and medical history is private for any user.</p>
+    <p><br></p>
+    <p><br></p>
+</div>
+</body>
+<script type="text/javascript" src="website/scripts/dropdown.js"></script>
+</html>
