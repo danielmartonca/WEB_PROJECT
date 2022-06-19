@@ -7,7 +7,7 @@ const jwtService = require('./services/jwt-service');
 
 const PORT = 8083;
 
-const authorisationRequiredApis = new Set(["/getPetDetails",]);
+const authorisationRequiredApis = new Set(["/getPetDetails","/updatePetDetails"]);
 
 http.createServer(function (request, response) {
     //while data is still being received -> do nothing

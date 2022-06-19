@@ -22,7 +22,27 @@ async function getPetDetails(request, response, jwt) {
 
     //if everything was ok
     console.log(`Pet details extracted:\n${JSON.stringify(petDetails)}\n`)
-    httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, JSON.stringify(petDetails));
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, petDetails);
+}
+
+async function updatePetDetails(request, response, jwt, petDetails) {
+    //extract account from jwt
+    const account = await jwtService.extractAccount(jwt);
+    if (account == null) {
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, "An unexpected error has occurred.");
+        return;
+    }
+
+    let hasUpdated = await databaseService.updatePetDetails(account.email, account.password, petDetails);
+    if (hasUpdated == null) {
+        console.error("Failed to update pet details.");
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, "An unexpected error has occurred.");
+    }
+
+    //if everything was ok
+    console.log(`Pet details updated:\n${JSON.stringify(petDetails)}\n`)
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, petDetails);
 }
 
 module.exports.getPetDetails = getPetDetails;
+module.exports.updatePetDetails = updatePetDetails;

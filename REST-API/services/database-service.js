@@ -27,8 +27,7 @@ async function registerAccount(jsonAccount) {
 }
 
 async function createPetDetails(jsonAccount) {
-    const result = await executeQuery(`
-    DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${jsonAccount.email}' and [Password]='${jsonAccount.password}');
+    const result = await executeQuery(`DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${jsonAccount.email}' and [Password]='${jsonAccount.password}');
     INSERT INTO [Details] VALUES(null,null,null,null,null,@account_id,null)`);
     return result !== null;
 }
@@ -44,8 +43,16 @@ async function getPetDetails(email, password) {
     return null;
 }
 
+async function updatePetDetails(email, password, petDetails) {
+    const result = await executeQuery(`DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${email}' and [Password]='${password}');
+    UPDATE [Details] SET Size='${petDetails.Size}',HealthStatus='${petDetails.HealthStatus}',PrefferedFood='${petDetails.PrefferedFood}',Age='${petDetails.Age}',Breed='${petDetails.Breed}',DateOfBirth='${petDetails.DateOfBirth}'
+    WHERE [AccountId]=@account_id;`);
+    return result.rowsAffected[1] !== 0;
+}
+
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
 module.exports.createPetDetails = createPetDetails;
 module.exports.accountExistsByCredentials = accountExistsByCredentials;
 module.exports.getPetDetails = getPetDetails;
+module.exports.updatePetDetails = updatePetDetails;
