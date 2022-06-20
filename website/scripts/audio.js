@@ -64,7 +64,7 @@ async function uploadAudio() {
 
         const json = {
             'file': file.name,
-            'bytes': btoa(String.fromCharCode(...new Uint8Array(evt.target.result)))
+            'bytes': btoa([].reduce.call(new Uint8Array(evt.target.result),function(p,c){return p+String.fromCharCode(c)},''))
         }
 
         const response = await fetch("/addPetAudio", {
