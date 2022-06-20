@@ -6,6 +6,9 @@ async function getController(request, response, jwt = "") {
         case "/getPetDetails":
             await animalsService.getPetDetails(request, response, jwt);
             break;
+        case "/getPetProfilePicture":
+            await animalsService.getPetProfilePicture(request, response, jwt);
+            break;
         case "/getPetImages":
             await animalsService.getPetMedia(request, response, jwt, 'images');
             break;

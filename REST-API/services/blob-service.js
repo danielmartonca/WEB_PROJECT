@@ -2,6 +2,21 @@ const fs = require('fs');
 const base64 = require('base64-arraybuffer')
 const arrayBufferToBuffer = require('arraybuffer-to-buffer');
 
+async function readFile(userEmailTruncated, directory, file) {
+    try {
+        if (fs.existsSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`) === false) {
+            console.log("File doesn't exist");
+            return false;
+        }
+        const data = fs.readFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
+        console.log(`Successfully read file REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
+        return data.toString("base64");
+    } catch (e) {
+        console.error(`Exception while reading files at /REST-API/blob/users/${userEmailTruncated}/${directory} . Exception is:\n${e}`);
+        return null;
+    }
+}
+
 async function readFiles(userEmailTruncated, directory) {
     try {
         let images = [];
@@ -31,5 +46,6 @@ async function writeFile(userEmailTruncated, directory, file, fileBytes) {
     }
 }
 
+module.exports.readFile = readFile;
 module.exports.readFiles = readFiles;
 module.exports.writeFile = writeFile;
