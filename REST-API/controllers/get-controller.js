@@ -6,6 +6,15 @@ async function getController(request, response, jwt = "") {
         case "/getPetDetails":
             await animalsService.getPetDetails(request, response, jwt);
             break;
+        case "/getPetImages":
+            await animalsService.getPetMedia(request, response, jwt, 'images');
+            break;
+        case "/getPetVideos":
+            await animalsService.getPetMedia(request, response, jwt, 'videos');
+            break;
+        case "/getPetAudio":
+            await animalsService.getPetMedia(request, response, jwt, 'audio');
+            break;
         default:
             baseService.handleFiles(request, response);
             break;

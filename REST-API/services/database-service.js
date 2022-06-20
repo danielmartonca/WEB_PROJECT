@@ -28,8 +28,7 @@ async function registerAccount(jsonAccount) {
 
 async function getAccountByEmailAndPassword(email, password) {
     const result = await executeQuery(`SELECT * FROM Accounts WHERE EmailAddress='${email}' AND Password='${password}'`);
-    if (result.recordset.length !== 0)
-        return result.recordset[0];
+    if (result.recordset.length !== 0) return result.recordset[0];
     return null;
 }
 

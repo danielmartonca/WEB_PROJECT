@@ -4,9 +4,7 @@ async function getPetDetails() {
         if (token === null) {
             console.error("No token extracted from local storage.");
             alert("You are not logged in to view this page.")
-            setTimeout(() => {
-                window.location.href = "/login.html"
-            }, 5000);
+            window.location.href = "/login.html"
             return;
         }
 
@@ -42,9 +40,7 @@ async function updatePetDetails() {
     if (token === null) {
         console.error("No token extracted from local storage.");
         alert("You are not logged in to view this page.")
-        setTimeout(() => {
-            window.location.href = "/login.html"
-        }, 5000);
+        window.location.href = "/login.html"
         return;
     }
 

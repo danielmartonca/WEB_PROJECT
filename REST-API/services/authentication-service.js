@@ -2,6 +2,7 @@ const databaseService = require('../services/database-service');
 const httpUtils = require('../utilities/http-utils')
 const {StatusCode} = require('status-code-enum')
 const jwtService = require('./jwt-service')
+const fs = require('fs')
 
 const nameRegex = RegExp("^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆŠŽ∂ð,.'-]+$")
 const familyNameRegex = RegExp("^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆŠŽ∂ð,.'-]+$")
@@ -54,6 +55,18 @@ async function register(request, response, body) {
         return;
     }
 
+    let emailTruncated = body.email.split("@")[0];
+    //create directory for multimedia
+    fs.mkdir(`REST-API/blob/users/${emailTruncated}/images`, {recursive: true}, (err) => {
+        if (err) console.error(`Error creating user ${emailTruncated} blob storage images.`);
+    });
+    fs.mkdir(`REST-API/blob/users/${emailTruncated}/videos`, {recursive: true}, (err) => {
+        if (err) console.error(`Error creating user ${emailTruncated} blob storage videos.`);
+    });
+    fs.mkdir(`REST-API/blob/users/${emailTruncated}/audio`, {recursive: true}, (err) => {
+        if (err) console.error(`Error creating user ${emailTruncated} blob storage audio.`);
+    });
+
     //if everything was ok
     console.log("Registered new account.\n")
     httpUtils.buildResponse(response, StatusCode.SuccessCreated, null, "Successfully created new account.");
@@ -90,11 +103,9 @@ async function login(request, response, body) {
     console.log(`Generated new jwt token for the account: ${jwtToken}`);
 
     //if everything was ok
-    httpUtils.buildResponse(response, StatusCode.SuccessOK,
-        {
-            'Authorization': `Bearer ${jwtToken}`,
-            'ContentType': 'application/json'
-        }, "Successfully logged in.");
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, {
+        'Authorization': `Bearer ${jwtToken}`, 'ContentType': 'application/json'
+    }, "Successfully logged in.");
 }
 
 module.exports.register = register;
