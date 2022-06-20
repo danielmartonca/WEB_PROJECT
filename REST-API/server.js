@@ -3,11 +3,12 @@ const httpUtils = require('./utilities/http-utils')
 const {StatusCode} = require('status-code-enum')
 const getController = require('./controllers/get-controller').getController;
 const postController = require('./controllers/post-controller').postController;
+const putController = require('./controllers/put-controller').putController;
 const jwtService = require('./services/jwt-service');
 
 const PORT = 8083;
 
-const authorisationRequiredApis = new Set(["/getPetDetails", "/updatePetDetails", "/getPetImages", "/getPetVideos", "/getPetAudio"]);
+const authorisationRequiredApis = new Set(["/getPetDetails", "/updatePetDetails", "/getPetImages", "/getPetVideos", "/getPetAudio", "/addPetImage", "/addPetVideo", "/addPetAudio"]);
 
 http.createServer(function (request, response) {
     //while data is still being received -> do nothing
@@ -65,6 +66,9 @@ http.createServer(function (request, response) {
                 break;
             case "POST":
                 await postController(request, response, json, token)
+                break;
+            case "PUT":
+                await putController(request, response, json, token)
                 break;
             default:
                 console.error("HTTP METHOD NOT SUPPORTED");

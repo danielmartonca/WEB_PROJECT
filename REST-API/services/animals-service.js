@@ -71,6 +71,29 @@ async function getPetMedia(request, response, jwt, mediaType) {
     httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, filesBytesList);
 }
 
+async function addPetMedia(request, response, body, jwt, mediaType) {
+    //extract account from jwt
+    const account = await jwtService.extractAccount(jwt);
+    if (account == null) {
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, "An unexpected error has occurred.");
+        return;
+    }
+
+    let emailTruncated = account.email.split("@")[0];
+    //extract pet media from file system
+    let hasCreatedFile = await blobService.writeFile(emailTruncated, mediaType, body.file, body.bytes);
+    if (hasCreatedFile === null) {
+        console.error(`Failed to create ${mediaType} file for account with email ${account.email}\n`)
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, `Failed to create ${mediaType} file.`);
+        return;
+    }
+
+    //if everything was ok
+    console.log(`File was uploaded successfully.`)
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, "File was uploaded successfully.");
+}
+
 module.exports.getPetDetails = getPetDetails;
 module.exports.updatePetDetails = updatePetDetails;
 module.exports.getPetMedia = getPetMedia;
+module.exports.addPetMedia = addPetMedia;

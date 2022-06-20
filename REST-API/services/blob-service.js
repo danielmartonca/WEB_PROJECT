@@ -17,4 +17,17 @@ async function readFiles(userEmailTruncated, directory) {
     }
 }
 
+async function writeFile(userEmailTruncated, directory, file, fileBytes) {
+    try {
+        console.log(`Creating file at /REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
+        fs.writeFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`, Uint8Array.from(fileBytes));
+        console.log(`Successfully created file /REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
+        return true;
+    } catch (e) {
+        console.error(`Exception while writing file at /REST-API/blob/users/${userEmailTruncated}/${directory}/${file} . Exception is:\n${e}`);
+        return null;
+    }
+}
+
 module.exports.readFiles = readFiles;
+module.exports.writeFile = writeFile;
