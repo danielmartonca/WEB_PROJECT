@@ -74,21 +74,21 @@ async function updateMealPlan() {
             arr.push(
                 {
                     'Meal': 'Breakfast',
-                    'Food': inputBr.value,
+                    'Food': inputBr.value !== "" ? inputBr.value : inputBr.placeholder,
                     'HasEaten': checkboxBr.checked === true ? "true" : "false"
                 }
             );
             arr.push(
                 {
                     'Meal': 'Lunch',
-                    'Food': inputLu.value,
+                    'Food': inputLu.value !== "" ? inputLu.value : inputLu.placeholder,
                     'HasEaten': checkboxLu.checked === true ? "true" : "false"
                 }
             );
             arr.push(
                 {
                     'Meal': 'Dinner',
-                    'Food': inputDi.value,
+                    'Food': inputDi.value !== "" ? inputDi.value : inputDi.placeholder,
                     'HasEaten': checkboxDi.checked === true ? "true" : "false"
                 }
             )
