@@ -1,4 +1,6 @@
 const fs = require('fs');
+const base64 = require('base64-arraybuffer')
+const arrayBufferToBuffer = require('arraybuffer-to-buffer');
 
 async function readFiles(userEmailTruncated, directory) {
     try {
@@ -20,7 +22,7 @@ async function readFiles(userEmailTruncated, directory) {
 async function writeFile(userEmailTruncated, directory, file, fileBytes) {
     try {
         console.log(`Creating file at /REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
-        fs.writeFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`, Uint8Array.from(fileBytes));
+        fs.writeFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`, arrayBufferToBuffer(base64.decode(fileBytes)));
         console.log(`Successfully created file /REST-API/blob/users/${userEmailTruncated}/${directory}/${file}`);
         return true;
     } catch (e) {
