@@ -7,7 +7,7 @@ const jwtService = require('./services/jwt-service');
 
 const PORT = 8083;
 
-const authorisationRequiredApis = new Set(["/getPetDetails", "/updatePetDetails","/getPetImages"]);
+const authorisationRequiredApis = new Set(["/getPetDetails", "/updatePetDetails", "/getPetImages", "/getPetVideos", "/getPetAudio"]);
 
 http.createServer(function (request, response) {
     //while data is still being received -> do nothing
@@ -31,7 +31,7 @@ http.createServer(function (request, response) {
         }
 
         //log all requests that are not GET
-        if (request.method !== "GET" || authorisationRequiredApis.add(request.url)) console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(json)}\n`);
+        if (request.method !== "GET" || authorisationRequiredApis.has(request.url)) console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(json)}\n`);
 
         let token = '';
         //if the current api call requires authorisation look for 'Authorisation: Bearer tokenValue' header and check if tokenValue is a valid JWT token then verify it
