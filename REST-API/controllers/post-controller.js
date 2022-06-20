@@ -11,7 +11,10 @@ async function postController(request, response, body, jwt = "") {
             await authenticationService.login(request, response, body);
             break;
         case "/updatePetDetails":
-            await animalsService.updatePetDetails(request, response,jwt, body);
+            await animalsService.updatePetDetails(request, response, jwt, body);
+            break;
+        case "/updateMealPlan":
+            await animalsService.updateMealPlan(request, response, jwt, body);
             break;
         default:
             baseService.handle404(request, response);

@@ -22,7 +22,7 @@ async function getMealPlan() {
             return;
         }
 
-        function updateDom(mealPlanArray, dayId = '') {
+        function updateDom(mealPlanArray, dayId) {
             if (mealPlanArray.length !== 0) {
                 for (let i = 0; i < mealPlanArray.length; i++) {
                     let mealPlan = mealPlanArray[i];
@@ -43,7 +43,7 @@ async function getMealPlan() {
                             break;
                     }
                     input.placeholder = mealPlan.Food;
-                    checkbox.checked = mealPlan.HasEaten === "true";
+                    checkbox.checked = mealPlan.HasEaten.startsWith("true");
                 }
             }
         }
@@ -59,9 +59,81 @@ async function getMealPlan() {
         console.error(e);
         alert("An unexpected error has occurred.");
     }
-
-
 }
 
+async function updateMealPlan() {
+    try {
+        function getValuesFromDOM(dayId) {
+            let inputBr = document.getElementById(`${dayId}-br`);
+            let checkboxBr = document.getElementById(`check-${dayId}-br`);
+            let inputLu = document.getElementById(`${dayId}-lu`);
+            let checkboxLu = document.getElementById(`check-${dayId}-lu`);
+            let inputDi = document.getElementById(`${dayId}-di`);
+            let checkboxDi = document.getElementById(`check-${dayId}-di`);
+            let arr = [];
+            arr.push(
+                {
+                    'Meal': 'Breakfast',
+                    'Food': inputBr.value,
+                    'HasEaten': checkboxBr.checked === true ? "true" : "false"
+                }
+            );
+            arr.push(
+                {
+                    'Meal': 'Lunch',
+                    'Food': inputLu.value,
+                    'HasEaten': checkboxLu.checked === true ? "true" : "false"
+                }
+            );
+            arr.push(
+                {
+                    'Meal': 'Dinner',
+                    'Food': inputDi.value,
+                    'HasEaten': checkboxDi.checked === true ? "true" : "false"
+                }
+            )
+            return arr;
+        }
+
+        const json = {
+            'mealPlanMonday': getValuesFromDOM('mo'),
+            'mealPlanTuesday': getValuesFromDOM('tu'),
+            'mealPlanWednesday': getValuesFromDOM('we'),
+            'mealPlanThursday': getValuesFromDOM('th'),
+            'mealPlanFriday': getValuesFromDOM('fr'),
+            'mealPlanSaturday': getValuesFromDOM('sa'),
+            'mealPlanSunday': getValuesFromDOM('su')
+        };
+
+        const token = window.localStorage.getItem("JWT");
+        if (token === null) {
+            console.error("No token extracted from local storage.");
+            alert("You are not logged in to view this page.")
+            window.location.href = "/login.html"
+            return;
+        }
+
+        const response = await fetch("/updateMealPlan", {
+            method: 'POST', headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(json)
+        });
+        let responseBody = await response.text();
+        console.log(`Response: ${response.status} with body:${responseBody}.`);
+
+        if (response.status !== 200) {
+            console.error('Failed to get pet meal plan.');
+            alert("An unexpected error has occurred.");
+            return;
+        }
+        console.log("Updated meal plan successfully.");
+        window.location.reload();
+    } catch (e) {
+        console.error(e);
+        alert("An unexpected error has occurred.");
+    }
+}
 
 window.onload = getMealPlan;

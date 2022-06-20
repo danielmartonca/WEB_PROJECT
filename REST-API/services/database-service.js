@@ -71,6 +71,19 @@ async function getMealPlan(email, password, dayOfWeek) {
     return result.recordset;
 }
 
+async function updateMealPlan(email, password, dayOfWeek, meal, food, hasEaten) {
+    if (food === "") return;
+    const result = await executeQuery(`DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${email}' and [Password]='${password}');
+    DELETE FROM [MealPlanner] WHERE [AccountId]=@account_id AND [DayOfWeek]='${dayOfWeek}';
+    Insert INTO [MealPlanner] Values (@account_id,'${dayOfWeek}','${meal}','${food}','${hasEaten}}');`);
+    if (result === null) {
+        console.error("Failed to update meal plan");
+        return null;
+    }
+    console.log(`Meal plan updated successfully for ${dayOfWeek} ${meal}`)
+    return true;
+}
+
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
 module.exports.getAccountByEmailAndPassword = getAccountByEmailAndPassword;
@@ -79,3 +92,4 @@ module.exports.accountExistsByCredentials = accountExistsByCredentials;
 module.exports.getPetDetails = getPetDetails;
 module.exports.updatePetDetails = updatePetDetails;
 module.exports.getMealPlan = getMealPlan;
+module.exports.updateMealPlan = updateMealPlan;

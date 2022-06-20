@@ -167,6 +167,26 @@ async function getMealPlan(request, response, jwt) {
     httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, mealPlan);
 }
 
+async function updateMealPlan(request, response, jwt, body) {
+    //extract account from jwt
+    const account = await jwtService.extractAccount(jwt);
+    if (account == null) {
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, "An unexpected error has occurred.");
+        return;
+    }
+    body.mealPlanMonday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Monday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanTuesday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Tuesday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanWednesday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Wednesday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanThursday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Thursday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanFriday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Friday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanSaturday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Saturday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+    body.mealPlanSunday.forEach(async (mealPlan) => await databaseService.updateMealPlan(account.email, account.password, 'Sunday', mealPlan.Meal, mealPlan.Food, mealPlan.HasEaten))
+
+    //if everything was ok
+    console.log(`Updated meal plan successfully.\n`)
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, null, "Updated meal plan successfully.");
+}
+
 module.exports.getPetProfilePicture = getPetProfilePicture;
 module.exports.uploadPetProfilePicture = uploadPetProfilePicture;
 module.exports.getPetDetails = getPetDetails;
@@ -174,3 +194,4 @@ module.exports.updatePetDetails = updatePetDetails;
 module.exports.getPetMedia = getPetMedia;
 module.exports.addPetMedia = addPetMedia;
 module.exports.getMealPlan = getMealPlan;
+module.exports.updateMealPlan = updateMealPlan;
