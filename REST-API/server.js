@@ -39,7 +39,7 @@ http.createServer(function (request, response) {
         }
 
         //log all requests that are not GET
-        if (request.method !== "GET" || authorisationRequiredApis.has(request.url)) console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(body)}\n`);
+        // if (request.method !== "GET" || authorisationRequiredApis.has(request.url)) console.log(`REQUEST:       ${request.method} ${request.url}${'\n' + JSON.stringify(body)}\n`);
 
         let token = '';
         //if the current api call requires authorisation look for 'Authorisation: Bearer tokenValue' header and check if tokenValue is a valid JWT token then verify it

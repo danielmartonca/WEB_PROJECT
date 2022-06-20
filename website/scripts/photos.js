@@ -49,47 +49,48 @@ async function getPhotos() {
 }
 
 async function uploadPhoto() {
+    document.getElementById("fileInput").click();
+    document.getElementById("fileInput").addEventListener('input', function () {
+        let file = document.getElementById("fileInput").files[0];
+        if (file === undefined) return;
 
-    let file = document.getElementById("fileInput").files[0];
-    if (file === undefined) return;
-
-    if (!file.name.endsWith(".jpg")) {
-        alert("Only .jpeg files are supported.");
-        return;
-    }
-    const fr = new FileReader();
-    fr.readAsArrayBuffer(file);
-    fr.onload = async function (evt) {
-        const token = window.localStorage.getItem("JWT");
-        if (token === null) {
-            console.error("No token extracted from local storage.");
-            alert("You are not logged in to add new photo.")
-            window.location.href = "/login.html"
+        if (!file.name.endsWith(".jpg")) {
+            alert("Only .jpeg files are supported.");
             return;
         }
+        const fr = new FileReader();
+        fr.readAsArrayBuffer(file);
+        fr.onload = async function (evt) {
+            const token = window.localStorage.getItem("JWT");
+            if (token === null) {
+                console.error("No token extracted from local storage.");
+                alert("You are not logged in to add new photo.")
+                window.location.href = "/login.html"
+                return;
+            }
 
-        const json = {
-            'file': file.name,
-            'bytes': btoa(String.fromCharCode(...new Uint8Array(evt.target.result)))
+            const json = {
+                'file': file.name, 'bytes': btoa(String.fromCharCode(...new Uint8Array(evt.target.result)))
+            }
+
+            const response = await fetch("/addPetImage", {
+                method: 'PUT', headers: {
+                    'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'
+                }, body: JSON.stringify(json)
+            });
+
+            let responseBody = await response.text();
+            console.log(`Response: ${response.status} with body: \n${responseBody}.`);
+
+            if (response.status !== 200) {
+                console.error('Failed to get pet details.');
+                alert("An unexpected error has occurred.");
+                return;
+            }
+            alert("Upload successful");
+            window.location.reload();
         }
-
-        const response = await fetch("/addPetImage", {
-            method: 'PUT', headers: {
-                'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'
-            }, body: JSON.stringify(json)
-        });
-
-        let responseBody = await response.text();
-        console.log(`Response: ${response.status} with body: \n${responseBody}.`);
-
-        if (response.status !== 200) {
-            console.error('Failed to get pet details.');
-            alert("An unexpected error has occurred.");
-            return;
-        }
-        alert("Upload successful");
-        window.location.reload();
-    }
+    });
 }
 
 window.onload = getPhotos();
