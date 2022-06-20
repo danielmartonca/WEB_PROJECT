@@ -57,6 +57,20 @@ async function updatePetDetails(email, password, petDetails) {
     return result.rowsAffected[1] !== 0;
 }
 
+async function getMealPlan(email, password, dayOfWeek) {
+    const result = await executeQuery(`DECLARE @account_id int=(SELECT id from [Accounts] where [EmailAddress]='${email}' and [Password]='${password}');
+    SELECT [Meal],[Food],[HasEaten] FROM [MealPlanner] WHERE [AccountId]=@account_id AND [DayOfWeek]='${dayOfWeek}';`);
+    let obj = {};
+    for (let i = 0; i < result.recordset.length; i++) {
+        let record = result.recordset[i];
+        obj[record.Meal] = {
+            'food': record.Food,
+            'hasEaten': record.HasEaten
+        }
+    }
+    return result.recordset;
+}
+
 module.exports.accountExistsByEmail = accountExistsByEmail;
 module.exports.registerAccount = registerAccount;
 module.exports.getAccountByEmailAndPassword = getAccountByEmailAndPassword;
@@ -64,3 +78,4 @@ module.exports.createPetDetails = createPetDetails;
 module.exports.accountExistsByCredentials = accountExistsByCredentials;
 module.exports.getPetDetails = getPetDetails;
 module.exports.updatePetDetails = updatePetDetails;
+module.exports.getMealPlan = getMealPlan;

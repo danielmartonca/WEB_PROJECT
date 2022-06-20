@@ -144,9 +144,33 @@ async function addPetMedia(request, response, body, jwt, mediaType) {
     httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, "File was uploaded successfully.");
 }
 
+async function getMealPlan(request, response, jwt) {
+    //extract account from jwt
+    const account = await jwtService.extractAccount(jwt);
+    if (account == null) {
+        httpUtils.buildResponse(response, StatusCode.ServerErrorInternal, null, "An unexpected error has occurred.");
+        return;
+    }
+
+    const mealPlan = {
+        'mealPlanMonday': await databaseService.getMealPlan(account.email, account.password, 'Monday'),
+        'mealPlanTuesday': await databaseService.getMealPlan(account.email, account.password, 'Tuesday'),
+        'mealPlanWednesday': await databaseService.getMealPlan(account.email, account.password, 'Wednesday'),
+        'mealPlanThursday': await databaseService.getMealPlan(account.email, account.password, 'Thursday'),
+        'mealPlanFriday': await databaseService.getMealPlan(account.email, account.password, 'Friday'),
+        'mealPlanSaturday': await databaseService.getMealPlan(account.email, account.password, 'Saturday'),
+        'mealPlanSunday': await databaseService.getMealPlan(account.email, account.password, 'Sunday'),
+    }
+
+    //if everything was ok
+    console.log(`Pet meal plan extracted:\n${JSON.stringify(mealPlan)}\n`)
+    httpUtils.buildResponse(response, StatusCode.SuccessOK, {'ContentType': 'application/json'}, mealPlan);
+}
+
 module.exports.getPetProfilePicture = getPetProfilePicture;
 module.exports.uploadPetProfilePicture = uploadPetProfilePicture;
 module.exports.getPetDetails = getPetDetails;
 module.exports.updatePetDetails = updatePetDetails;
 module.exports.getPetMedia = getPetMedia;
 module.exports.addPetMedia = addPetMedia;
+module.exports.getMealPlan = getMealPlan;

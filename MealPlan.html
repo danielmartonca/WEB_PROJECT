@@ -10,101 +10,169 @@
     <title>Meal Plan</title>
     <!--SCRIPTS-->
     <script src="website/scripts/authentication.js"></script>
+    <script src="website/scripts/meal-plan.js"></script>
 </head>
 
 <body>
-     <!--  NAVIGATION BAR -->
-     <div class="navigation" id="responsive-navigation" >
-        <a href="MainPage.html">
+<!--  NAVIGATION BAR -->
+<div class="navigation" id="responsive-navigation">
+    <a href="MainPage.html">
         <img src="website/assets/logo_transparent.png" class="logo" alt="logo"></a>
-        <a href="MainPage.html">About</a>
-        <a href="FindFriend.html">Find friends</a>
-        <button class="dropdown">Profile 
-          <i class="arrow down"></i>
-        </button>
-        <div class="dropdown-container">
-          <a href="./MealPlan.html">Meal plan</a>
-          <a href="Multimedia.html">Multimedia</a>
-          <a href="MedicalHistory.html">Medical history</a>
-        </div>
-        <a onclick="signOut()">Sign out</a>
+    <a href="MainPage.html">About</a>
+    <a href="FindFriend.html">Find friends</a>
+    <button class="dropdown">Profile
+        <i class="arrow down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="./MealPlan.html">Meal plan</a>
+        <a href="Multimedia.html">Multimedia</a>
+        <a href="MedicalHistory.html">Medical history</a>
     </div>
-    <div class="main" id="sideNav">
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <img src="website/assets/3lines.jpg" class="img-icon" alt="">
-        </a>
-        <div class="weekly-plan">
-            <h1 class="title">WEEKLY MEAL PLAN</h1>
-            <h2 style="font-size: 2vw;text-align:center;color:rgb(126, 84, 5);">Specially created for Grivei</h2>
-            <button class="button-edit">EDIT</button>
-            <div class="days">
-                <div class="days-box">
-                    <p style="text-align: center;">Monday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Pork Heat</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Chicken necks </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Tuesday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Meaty Pork Neck Bone</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Pig Tails </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Wednesday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Beef Heart</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Pork Heat</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Duck Necks </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Thursday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Atlantic Mackerel</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Boneless Beef</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Pig Tails </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Friday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Pork Heat</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner:  Atlantic Mackerel </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Saturday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast: Chicken necks</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Pork Heat</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Pork Heat </label>
-                </div>
-                <div class="days-box">
-                    <p style="text-align: center;">Sunday</p>
-                    <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-                    <label for="breakfast"> Breakfast:  Atlantic Mackerel</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" value="lunch">
-                    <label for="lunch"> Lunch: Chicken necks</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" value="dinner">
-                    <label for="dinner"> Dinner: Chicken necks </label>
-                </div>
+    <a href="Login.html">Sign out</a>
+</div>
 
-            </div>
+<div class="main" id="sideNav">
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <img src="website/assets/3lines.jpg" class="img-icon" alt="">
+    </a>
+    <div class="weekly-plan">
+        <h1 class="title">WEEKLY MEAL PLAN</h1>
+        <h2 style="font-size: 7vh;text-align:center;color:rgb(126, 84, 5);">Specially created for Grivei</h2>
+        <button class="button-edit" id="save-bttn" onclick="">SAVE</button>
+        <div class="days">
+            <form>
+                <div id="monday" class="days-box">
+                    <p style="text-align: center;">Monday</p>
+                    <label>
+                        <input type="checkbox" id="check-mo-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="mo-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-mo-lu" name="lunch" value="lunch">
+                    </label>
+                    <label>
+                        Lunch:
+                        <input type="text" id="mo-lu" placeholder="food">
+                    </label><br>
+                    <label>
+                        <input type="checkbox" id="check-mo-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="mo-di" placeholder="food"> </label>
+                </div>
+                <div id="tuesday" class="days-box">
+                    <p style="text-align: center;">Tuesday</p>
+                    <label>
+                        <input type="checkbox" id="check-tu-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="tu-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-tu-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="tu-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-tu-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="tu-di" placeholder="food"> </label>
+                </div>
+                <div id="wednesday" class="days-box">
+                    <p style="text-align: center;">Wednesday</p>
+                    <label>
+                        <input type="checkbox" id="check-we-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="we-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-we-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="we-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-we-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="we-di" placeholder="food"> </label>
+                </div>
+                <div id="thursday" class="days-box">
+                    <p style="text-align: center;">Thursday</p>
+                    <label>
+                        <input type="checkbox" id="check-th-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="th-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-th-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="th-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-th-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="th-di" placeholder="food"></label>
+                </div>
+                <div id="friday" class="days-box">
+                    <p style="text-align: center;">Friday</p>
+                    <label>
+                        <input type="checkbox" id="check-fr-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="fr-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-fr-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="fr-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-fr-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="fr-di" placeholder="food"> </label>
+                </div>
+                <div id="saturday" class="days-box">
+                    <p style="text-align: center;">Saturday</p>
+                    <label>
+                        <input type="checkbox" id="check-sa-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="sa-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-sa-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="sa-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-sa-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="sa-di" placeholder="food"></label>
+                </div>
+                <div id="sunday" class="days-box">
+                    <p style="text-align: center;">Sunday</p>
+                    <label>
+                        <input type="checkbox" id="check-su-br" name="breakfast" value="breakfast">
+                    </label>
+                    <label> Breakfast:
+                        <input type="text" id="su-br" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-su-lu" name="lunch" value="lunch">
+                    </label>
+                    <label> Lunch:
+                        <input type="text" id="su-lu" placeholder="food"></label><br>
+                    <label>
+                        <input type="checkbox" id="check-su-di" name="dinner" value="dinner">
+                    </label>
+                    <label> Dinner:
+                        <input type="text" id="su-di" placeholder="food"></label>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </body>
 <script type="text/javascript" src="website/scripts/dropdown.js"></script>
 </html>
