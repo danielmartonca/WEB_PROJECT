@@ -111,7 +111,6 @@ async function updatePetDetails() {
     window.location.reload();
 }
 
-
 async function uploadProfilePicture() {
     document.getElementById("fileInput").click();
     document.getElementById("fileInput").addEventListener('input', function () {
