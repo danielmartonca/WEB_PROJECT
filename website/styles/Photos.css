@@ -7,37 +7,53 @@
     margin-bottom: 100px;
     margin-right: 15px;
     width: 100%;
-  }
+}
 
-  .gallery img:hover {
+.gallery img:hover {
     border: #4700D8 solid 10px;
-  }
-  
-  .gallery img {
+}
+
+.gallery img {
     width: 100%;
     height: 150px;
     margin-top: 10px;
     border-radius: 50%;
     border: 1px solid #777;
-  }
-#dog{
-  margin: 0px 30px;
 }
+
+#dog {
+    margin: 0px 30px;
+}
+
 .button-little {
-  background-color: rgb(51, 107, 139);
-  justify-content: center;
-  border: none;
-  color: white;
-  padding: 40px;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 50%;
+    background-color: rgb(51, 107, 139);
+    justify-content: center;
+    border: none;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    margin: auto;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
 }
-.button-little:hover{
-  background-color:blue;
+
+.button-little:hover {
+    background-color: blue;
+}
+
+#fullscreen {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    background-position: center center;
+    background-color: black;
 }

@@ -6,10 +6,9 @@ async function readFiles(userEmailTruncated, directory) {
         let filenames = fs.readdirSync(`REST-API/blob/users/${userEmailTruncated}/${directory}`);
         filenames.forEach(file => {
             console.log(`Reading file ${`REST-API/blob/users/${userEmailTruncated}/${directory}/` + file}`);
-            const data = fs.readFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/` + file,
-                {encoding: 'utf8', flag: 'r'});
+            const data = fs.readFileSync(`REST-API/blob/users/${userEmailTruncated}/${directory}/` + file);
             console.log(`Successfully read file ${`REST-API/blob/users/${userEmailTruncated}/${directory}/` + file}`);
-            images.push(data);
+            images.push(data.toString("base64"));
         });
         return images;
     } catch (e) {
