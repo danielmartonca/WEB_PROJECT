@@ -8,6 +8,7 @@
     <title>Pet Smart Manager</title>
     <!--SCRIPTS-->
     <script src="website/scripts/authentication.js"></script>
+    <script src="website/scripts/videos.js"></script>
 </head>
 
 <div class="navigation" id="responsive-navigation">
@@ -33,23 +34,16 @@
         <img src="website/assets/3lines.jpg" class="img-icon" alt="">
     </a>
 </div>
-<div class="asezare">
-    <video width="500" height="500" controls>
-        <source src="website/assets/video1.mp4" type="video/mp4">
-    </video>
+<div id="videosGallery">
+    <!--    <div class="asezare">-->
+    <!--        <video width="500" height="500" controls>-->
+    <!--            <source src="website/assets/video1.mp4" type="video/mp4">-->
+    <!--        </video>-->
+    <!--    </div>-->
 </div>
-<div class="asezare">
-    <video width="500" height="500" controls>
-        <source src="website/assets/video2.mp4" type="video/mp4">
-    </video>
-</div>
-<div class="asezare">
-    <video width="500" height="500" controls>
-        <source src="website/assets/video3.mp4" type="video/mp4">
-    </video>
-</div>
-<button class="button-little">Add Video</button>
-</div>
+<input id="fileInput" style="display: flex;justify-content: center;margin-left: 300px" type="file" name="fileupload"/>
+<button class="button-little" onclick="uploadVideo()">Add Video</button>
+
 </body>
 <script type="text/javascript" src="website/scripts/dropdown.js"></script>
 </html>
