@@ -70,7 +70,6 @@ async function uploadPhoto() {
 
         const json = {
             'file': file.name,
-            // 'by':buff.toString('base64')
             'bytes': btoa(String.fromCharCode(...new Uint8Array(evt.target.result)))
         }
 

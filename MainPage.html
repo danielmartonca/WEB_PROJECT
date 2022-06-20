@@ -40,9 +40,12 @@
         </div>
         <div class="description">
             <form class="description">
-                <img src="website/assets/dog.jpg" class="center-image box-shadow" alt="dog">
+                <img id="profile-image" src="/website/assets/profilePicture.jpg" class="center-image box-shadow"
+                     alt="dog" onclick="uploadProfilePicture()">
+                <input id="fileInput" style="opacity: 0;width: 0;height: 0;position: fixed; top: -100em" type="file"
+                       name="fileupload"/>
                 <div class="description-box">
-                    <h4>Size: <label><input  type="text" id="size" placeholder="press to edit"></label></h4>
+                    <h4>Size: <label><input type="text" id="size" placeholder="press to edit"></label></h4>
                     <h4>Health status:<label><input type="text" id="health" placeholder="press to edit"></label></h4>
                     <h4>Preffered food:<label> <input type="text" id="food" placeholder="press to edit"></label></h4>
                 </div>

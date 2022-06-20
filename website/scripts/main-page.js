@@ -1,3 +1,31 @@
+async function getPetProfilePicture() {
+    const token = window.localStorage.getItem("JWT");
+    if (token === null) {
+        console.error("No token extracted from local storage.");
+        alert("You are not logged in to view this page.")
+        window.location.href = "/login.html"
+        return;
+    }
+    const response = await fetch("/getPetProfilePicture", {
+        method: 'GET', headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    let responseBody = await response.text();
+    console.log(`Response: ${response.status} with body:${responseBody}`);
+
+    if (response.status !== 200) {
+        console.error('Failed to get pet details.');
+        alert("An unexpected error has occurred.");
+        return;
+    }
+    if (responseBody.length > 1) {
+        document.getElementById("profile-image").src = "data:image/png;base64," + responseBody;
+        return;
+    }
+    console.log("No profile picture is set.");
+}
+
 async function getPetDetails() {
     try {
         const token = window.localStorage.getItem("JWT");
@@ -33,6 +61,7 @@ async function getPetDetails() {
         alert("An unexpected error has occurred.");
     }
 
+    await getPetProfilePicture();
 }
 
 async function updatePetDetails() {
@@ -65,8 +94,7 @@ async function updatePetDetails() {
     console.log(`Will send registration request with body:\n${JSON.stringify(json)}`);
     let response = await fetch("/updatePetDetails", {
         method: 'POST', headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'
         }, body: JSON.stringify(json)
     })
 
@@ -81,6 +109,53 @@ async function updatePetDetails() {
     console.log("Successfully updated pet details");
     alert("Pet details have been updated.")
     window.location.reload();
+}
+
+
+async function uploadProfilePicture() {
+    document.getElementById("fileInput").click();
+    document.getElementById("fileInput").addEventListener('input', function () {
+        let file = document.getElementById("fileInput").files[0];
+        if (file === undefined) return;
+
+        if (!file.name.endsWith(".jpg")) {
+            alert("Only .jpeg files are supported.");
+            return;
+        }
+        const fr = new FileReader();
+        fr.readAsArrayBuffer(file);
+        fr.onload = async function (evt) {
+            const token = window.localStorage.getItem("JWT");
+            if (token === null) {
+                console.error("No token extracted from local storage.");
+                alert("You are not logged in to add new photo.")
+                window.location.href = "/login.html"
+                return;
+            }
+
+            const json = {
+                'file': file.name, 'bytes': btoa(String.fromCharCode(...new Uint8Array(evt.target.result)))
+            }
+
+            const response = await fetch("/uploadPetProfilePicture", {
+                method: 'PUT', headers: {
+                    'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'
+                }, body: JSON.stringify(json)
+            });
+
+            let responseBody = await response.text();
+            console.log(`Response: ${response.status} with body: \n${responseBody}.`);
+
+            if (response.status !== 200) {
+                console.error('Failed to update profile picture.');
+                alert("An unexpected error has occurred.");
+                return;
+            }
+            alert("Upload successful.");
+            window.location.reload();
+        }
+    });
+
 }
 
 window.onload = getPetDetails;

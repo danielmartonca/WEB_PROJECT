@@ -3,7 +3,7 @@ const animalsService = require('../services/animals-service');
 
 async function putController(request, response, body, jwt = "") {
     switch (request.url) {
-        case "/addProfilePicture":
+        case "/uploadPetProfilePicture":
             await animalsService.uploadPetProfilePicture(request, response, body, jwt);
             break;
         case "/addPetImage":
